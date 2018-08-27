@@ -6,11 +6,14 @@ if [ -z "$flock" ] ; then
   exec env flock=1 flock -n $lockfile "$0" "$@"
 fi
 
+set -eu
+
 src=rsync://rsync.alpinelinux.org/alpine/
-dest=/var/www/localhost/htdocs/alpine/
+#dest=/var/www/localhost/htdocs/alpine/
+dest=/alpine
 
 # uncomment this to exclude old v2.x branches
-exclude="--exclude v2.* --exclude v3.[0-6]/*"
+condition="--exclude v2.*/ --include */*/x86_64/ --exclude */*/*/"
 
 mkdir -p "$dest"
 /usr/bin/rsync \
@@ -21,5 +24,5 @@ mkdir -p "$dest"
         --delete-after \
         --delay-updates \
         --timeout=600 \
-        $exclude \
+        $condition \
         "$src" "$dest"
