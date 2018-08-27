@@ -1,8 +1,11 @@
----
-
 version: "3.7"
 
 services:
   alpine:
     build: ./alpine
+    volumes:
+      - alpine:/alpine
 
+volumes:
+  alpine:
+    driver: 'local'

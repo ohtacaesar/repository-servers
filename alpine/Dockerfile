@@ -1,10 +1,13 @@
 FROM alpine:3.8
 
-RUN apk add --no-cache rsync apk-cron
-
 ADD alpine-mirror /etc/periodic/hourly/alpine-mirror
 
-RUN chmod +x /etc/periodic/hourly/alpine-mirror
+RUN     apk add --no-cache rsync apk-cron \
+    &&  chmod +x /etc/periodic/hourly/alpine-mirror
+
+VOLUME  /alpine
+
+WORKDIR /alpine
 
 CMD ["crond", "-l", "2", "-f"]
 
