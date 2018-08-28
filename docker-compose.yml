@@ -1,6 +1,14 @@
 version: "3.7"
 
 services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+      - alpine:/usr/share/nginx/html/alpine
+      - ./conf.d:/etc/nginx/conf.d
+
   alpine:
     build: ./alpine
     volumes:
