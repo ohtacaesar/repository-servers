@@ -10,10 +10,25 @@ services:
       - ./conf.d:/etc/nginx/conf.d
 
   alpine:
-    build: ./alpine
+    build:
+      context: ./alpine
+      args:
+        ALPINE_SERVER: 192.168.11.200
     volumes:
       - alpine:/alpine
 
+  pip:
+    build:
+      context: ./pip
+      args:
+        ALPINE_SERVER: 192.168.11.200
+    ports:
+      - 3141:3141
+    volumes:
+      - pip:/pip
+
 volumes:
   alpine:
+    driver: 'local'
+  pip:
     driver: 'local'

@@ -11,4 +11,3 @@ VOLUME  /alpine
 WORKDIR /alpine
 
 CMD ["crond", "-l", "2", "-f"]
-
