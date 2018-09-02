@@ -2,7 +2,8 @@ FROM alpine:3.8
 
 ADD alpine-mirror /etc/periodic/hourly/alpine-mirror
 
-RUN     apk add --no-cache rsync apk-cron \
+RUN set -eux \
+    &&  apk add --no-cache rsync apk-cron \
     &&  chmod +x /etc/periodic/hourly/alpine-mirror
 
 VOLUME  /alpine
