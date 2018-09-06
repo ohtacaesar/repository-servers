@@ -7,6 +7,8 @@ RUN set -eux \
     &&  apk add --no-cache nodejs-npm \
     &&  npm install npm-proxy-cache -g
 
+VOLUME /npm
+
 EXPOSE 8080
 
-CMD ["npm-proxy-cache", "-h", "0.0.0.0", "-v"]
+CMD ["npm-proxy-cache", "-h", "0.0.0.0", "-s", "/npm"]

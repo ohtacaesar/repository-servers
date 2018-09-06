@@ -14,5 +14,4 @@ RUN set -eux \
     &&  if [[ -n "${NPM_PROXY}" ]]; then npm config set proxy       $NPM_PROXY ; fi \
     &&  if [[ -n "${NPM_PROXY}" ]]; then npm config set https-proxy $NPM_PROXY ; fi \
     &&  if [[ -n "${NPM_PROXY}" ]]; then npm config set strict-ssl  false ; fi \
-    &&  npm config list \
-    &&  npm install vue
+    &&  npm install -g vue webpack
