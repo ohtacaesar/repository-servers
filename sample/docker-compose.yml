@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  sample:
+    build:
+      context: ./
+      args:
+        # Alpine
+        ALPINE_SERVER: 192.168.11.200
+        # pip
+        PIP_TRUSTED_HOST: 192.168.11.200
+        PIP_INDEX_URL: http://192.168.11.200:3141/root/pypi/
+
