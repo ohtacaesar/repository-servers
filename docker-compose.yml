@@ -27,8 +27,18 @@ services:
     volumes:
       - pip:/pip
 
+  npm:
+    build:
+      context: ./npm
+      args:
+        ALPINE_SERVER: 192.168.11.200
+    ports:
+      - 8080:8080
+
 volumes:
   alpine:
     driver: 'local'
   pip:
+    driver: 'local'
+  npm:
     driver: 'local'
