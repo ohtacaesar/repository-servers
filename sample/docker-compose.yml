@@ -10,4 +10,6 @@ services:
         # pip
         PIP_TRUSTED_HOST: 192.168.11.200
         PIP_INDEX_URL: http://192.168.11.200:3141/root/pypi/
+        # npm
+        NPM_PROXY: http://192.168.11.200:8080/
 
