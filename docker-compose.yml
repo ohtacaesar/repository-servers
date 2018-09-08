@@ -8,6 +8,7 @@ services:
     volumes:
       - alpine:/usr/share/nginx/html/alpine
       - ./conf.d:/etc/nginx/conf.d
+    restart: ${RESTART:-none}
 
   alpine:
     build:
@@ -16,6 +17,7 @@ services:
         ALPINE_SERVER: 192.168.11.200
     volumes:
       - alpine:/alpine
+    restart: ${RESTART:-none}
 
   pip:
     build:
@@ -26,6 +28,7 @@ services:
       - 3141:3141
     volumes:
       - pip:/pip
+    restart: ${RESTART:-none}
 
   npm:
     build:
@@ -36,6 +39,7 @@ services:
       - 8080:8080
     volumes:
       - npm:/npm
+    restart: ${RESTART:-none}
 
 volumes:
   alpine:
