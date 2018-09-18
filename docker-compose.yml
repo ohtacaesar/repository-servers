@@ -14,7 +14,7 @@ services:
     build:
       context: ./alpine
       args:
-        ALPINE_SERVER: 192.168.11.200
+        ALPINE_SERVER: ${ALPINE_SERVER}
     volumes:
       - alpine:/alpine
     restart: ${RESTART:-no}
@@ -23,7 +23,9 @@ services:
     build:
       context: ./pip
       args:
-        ALPINE_SERVER: 192.168.11.200
+        ALPINE_SERVER: ${ALPINE_SERVER}
+        PIP_TRUSTED_HOST: ${PIP_TRUSTED_HOST}
+        PIP_INDEX_URL: ${PIP_INDEX_URL}
     ports:
       - 3141:3141
     volumes:
@@ -34,7 +36,8 @@ services:
     build:
       context: ./npm
       args:
-        ALPINE_SERVER: 192.168.11.200
+        ALPINE_SERVER: ${ALPINE_SERVER}
+        NPM_PROXY: ${NPM_PROXY}
     ports:
       - 8080:8080
     volumes:
