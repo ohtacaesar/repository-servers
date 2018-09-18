@@ -1,9 +1,14 @@
 FROM alpine:3.8
 
-ARG ALPINE_SERVER=dl-cdn.alpinelinux.org
+ARG ALPINE_SERVER=""
+
+ARG PIP_TRUSTED_HOST
+ARG PIP_INDEX_URL
 
 RUN set -eux \
-    &&  sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_SERVER}/" /etc/apk/repositories \
+    &&  if [[ -n "${ALPINE_SERVER}" ]]; then \
+          sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_SERVER}/" /etc/apk/repositories; \
+        fi \
     &&  apk add --no-cache python3 \
     &&  apk add --no-cache --virtual .build-deps gcc python3-dev musl-dev libffi-dev \
     &&  pip3 install devpi-server \
